@@ -1,0 +1,145 @@
+<?php
+/* Faqja (home.php) e cila paraqitet pasi perdoruesi te llogohet me sukses */
+	include("check.php");	
+?>
+<!DOCTYPE HTML>
+<!--
+	Highlights by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Highlights by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<nav id="nav">
+	<a href="ballina.php">Ballina</a>
+					<a href="contact.php">Kontakti</a>
+					<a href="perdoruesit.php">Përdoruesit</a>
+						<a href="logout.php">Ckycu</a>
+		</nav>
+
+
+		<!-- Header -->
+			<section id="header">
+				<header class="major">
+					<h1>Rent a Car </h1>
+					<p>Nese keni mbetur pa vetur, ne jemi zgjidha juaj!</p>
+				</header>
+			</section>
+
+		<!-- One -->
+
+
+		<!-- Two -->
+			<section id="two" class="main special">
+				<div class="container">
+					<span class="image fit primary"><img src="images/pic02.jpg" alt="" /></span>
+					<div class="content">
+					<p style="text-align:right;">Përshëndetje, <em><?php  echo $login_user;?>!</em></p>
+						<header class="major">
+							<h2>Stuff I do</h2>
+						</header>
+						<p>Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate.</p>
+						<ul class="icons-grid">
+							<li>
+								<a href="shto_perdorues.php"><span class="icon solid major fa-camera-retro"></span>
+								<h3>Shto Kontakt</h3></a>
+							</li>
+							<li>
+								<a href="modifiko_perdorues.php"><<span class="icon solid major fa-pencil-alt"></span>
+								<h3>Modifiko perdorues</h3></a>
+							</li>
+							<li>
+								<a href="fshije_perdorues.php"><span class="icon solid major fa-code"></span>
+								<h3>Fshijë Konakt</h3></a>
+							</li>
+	
+						</ul>
+							<form action="" method="post">  
+									</br>
+									<table>
+										<tr>
+											<h3>Kërko të dhënat e përdoruesit</h3>
+										</tr>
+										<tr>
+
+											<td>
+											Shkruaj:
+											</td>
+											<td>
+											<input type="text" name="term" value="%" placeholder="Përdoruesin ose Email-in"/>
+											</td>
+											<td> <input type="submit" value="Kërko" /></td>
+										</tr>
+									</table> 
+					
+				
+								</form> 
+								<div class="table-wrapper">
+								<table width='80%' border=0>
+									<div class="table-wrapper">
+									<tr bgcolor='#CCCCCC'>
+										<td>Përdoruesi</td>
+										<td>Fjalëkalimi</td>
+										<td>Email</td>
+												
+									</tr> 
+										<?php
+										if (!empty($_REQUEST['term'])) {
+										$term = mysqli_real_escape_string
+										($conn,$_REQUEST['term']);     
+										$sql = mysqli_query($conn,
+										"SELECT * FROM users 
+										WHERE username LIKE '%".$term."%' 
+										OR  email LIKE '%".$term."%'"); 
+										while($row = mysqli_fetch_array($sql)) { 		
+												echo "<tr>";
+												echo "<td>".$row['Username']."</td>";
+												echo "<td>".$row['Password']."</td>";
+												echo "<td>".$row['Email']."</td>";	
+													
+											}
+
+										}
+
+										?>
+									</div>
+								</table>
+					</div>
+				</div>
+			</section>
+
+
+		<!-- Footer -->
+			<section id="footer">
+			
+				<footer>
+					<ul class="icons">
+						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands alt fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Demo Images: <a href="http://unsplash.com">Unsplash</a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	
+	</body>
+</html>
